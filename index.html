@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Noveltree</title>
+        <link rel="stylesheet" href="./index.css">
+    </head>
+
+    <body>
+        <!-- components -->
+        <template id="treeNode">
+            <div class="nodeUI">
+                <div class="nodeControls">
+                    
+                </div>
+
+                <h3 class="nodeTitle"></h3>
+
+                <div class="nodeChildren">
+                </div>
+            </div>
+        </template>
+
+        <dialog id="editingPopup">
+            <input type="text" id="editingTitle" />
+            <textarea id="editingBody"></textarea>
+        </dialog>
+
+
+        <!-- website contents -->
+        <div id="fileControls">
+            <button id="saveBtn">
+                <span>Save</span>
+            </button>
+
+            <button id="loadBtn">
+                <span>Load</span>
+            </button>
+
+            <button id="exportBtn">
+                <span>Load</span>
+            </button>
+        </div>
+
+        <div id="projectControls"></div>
+
+        <!-- website script -->
+        <script src="./state.js" defer></script>
+        <script src="./render.js" defer></script>
+    </body>
+</html>
