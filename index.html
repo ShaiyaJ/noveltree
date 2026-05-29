@@ -15,6 +15,7 @@
                 </div>
 
                 <h3 class="nodeTitle"></h3>
+                <p class="nodePreview"></p>
 
                 <div class="nodeChildren">
                 </div>
@@ -24,22 +25,27 @@
         <dialog id="editingPopup">
             <input type="text" id="editingTitle" />
             <textarea id="editingBody"></textarea>
+            <button commandfor="editingPopup" command="close">
+                <span>Close</span>
+            </button>
         </dialog>
 
 
         <!-- website contents -->
-        <div id="fileControls">
-            <button id="saveBtn">
-                <span>Save</span>
-            </button>
+        <div id="menuBar">
+            <div id="fileControls">
+                <button id="saveBtn">
+                    <span>Save</span>
+                </button>
 
-            <button id="loadBtn">
-                <span>Load</span>
-            </button>
+                <button id="loadBtn">
+                    <span>Load</span>
+                </button>
 
-            <button id="exportBtn">
-                <span>Load</span>
-            </button>
+                <button id="exportBtn">
+                    <span>Export</span>
+                </button>
+            </div>
         </div>
 
         <div id="projectControls"></div>

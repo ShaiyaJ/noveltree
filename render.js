@@ -6,15 +6,22 @@ const nodeTemplate = treeNode.content.children[0]; // Used to copy the node temp
 // Primary app UI management //
 
 /// Event for when a node is clicked
-function onNodeElementClick(i) {
+function onNodeElementClick(element, i) {
+    console.log(i);
     // Setting up editing popup
     const data = getNode(i);
 
     editingTitle.value = data.getTitle();
-    editingTitle.addEventListener("onpropertychange", _ => data.updateText(editingTitle.value));
+    editingTitle.oninput = _ => {
+        element.getElementsByClassName("nodeTitle")[0].innerText = editingTitle.value;
+        data.updateText(editingTitle.value);
+    };
 
     editingBody.value = data.getText();
-    editingTitle.addEventListener("onpropertychange", _ => data.updateText(editingBody.value));
+    editingBody.oninput = _ => {
+        element.getElementsByClassName("nodePreview")[0].innerText = editingBody.value;
+        data.updateText(editingBody.value);
+    };
     
     // Displaying popup
     editingPopup.showModal();
@@ -42,6 +49,7 @@ function createNodeElement(i) {
     // Create a button if the node doesn't exist in the backend
     if (node === undefined) { 
         const button = document.createElement("button");
+        button.innerText = "+";
         button.className = "newButton";
 
         button.onclick = _ => onNewClick(button, i);
@@ -53,7 +61,10 @@ function createNodeElement(i) {
     const copy = nodeTemplate.cloneNode(true);
     copy.getElementsByClassName("nodeTitle")[0].innerText = node.getTitle();
 
-    copy.onclick = _ => onNodeElementClick(i);
+    copy.onclick = e => {
+        onNodeElementClick(copy, i);
+        e.stopPropagation();
+    }
 
     return copy;
 }
@@ -77,5 +88,19 @@ saveBtn.onclick = _ => {
 };
 
 exportBtn.onclick = _ => {
-    console.log("export");
+    const inOrder = (text, i) => {
+        const node = getNode(i);
+        const left = leftBranch(i);
+        const right = rightBranch(i);
+
+        if (node === undefined)
+            return text;
+
+        text += inOrder(text, left) + node.getText() + inOrder(text, right);
+
+        return text;
+    };
+
+    console.log( inOrder("", 0) );
 }
+

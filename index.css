@@ -1,0 +1,35 @@
+html, body {
+    overflow: hidden;
+
+    width: 100%;
+    height: 100%;
+}
+
+#projectControls {
+    overflow: scroll;
+
+    width: 100%;
+    height: 100%;
+
+    & > .nodeUI {
+    }
+}
+
+.nodeUI {
+    position: relative;
+
+    & .nodeTitle {
+        text-align: center;   
+    }
+
+    & > .nodeChildren {
+        display: flex;
+
+        & .nodeUI, & .newButton {
+            margin: 0 auto auto auto;
+        }
+
+        & > .nodeUI:first-child { right: 100px }
+        & > .nodeUI:last-child  {  left: 100px }
+    }
+}
