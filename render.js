@@ -7,7 +7,6 @@ const nodeTemplate = treeNode.content.children[0]; // Used to copy the node temp
 
 /// Event for when a node is clicked
 function onNodeElementClick(element, i) {
-    console.log(i);
     // Setting up editing popup
     const data = getNode(i);
 
@@ -52,7 +51,10 @@ function createNodeElement(i) {
         button.innerText = "+";
         button.className = "newButton";
 
-        button.onclick = _ => onNewClick(button, i);
+        button.onclick = e => {
+            onNewClick(button, i); 
+            e.stopPropagation();
+        }
 
         return button;
     }
